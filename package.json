@@ -6,12 +6,15 @@
         "build": "vite build"
     },
     "devDependencies": {
+        "@quasar/vite-plugin": "^1.5.0",
         "axios": "^1.1.2",
         "laravel-vite-plugin": "^0.8.0",
         "vite": "^4.0.0"
     },
     "dependencies": {
         "@inertiajs/vue3": "^1.0.11",
-        "@vitejs/plugin-vue": "^4.3.4"
+        "@quasar/extras": "^1.16.6",
+        "@vitejs/plugin-vue": "^4.3.4",
+        "quasar": "^2.12.7"
     }
 }
