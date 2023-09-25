@@ -1,0 +1,20 @@
+:root {
+    /* vintage color scheme */
+    --base: #FFFFFF;
+    --beige: #EBE4D1;
+    --greay: #B4B4B3;
+    --navy: #26577C;
+    --orange: #E55604;
+
+    /* yellow-blue color scheme
+    --orange: #FFCC70;
+    --yellow: #FFFADD;
+    --blue: #8ECDDD;
+    --navy: #22668D;
+    */
+
+    /* settings */
+
+    --padd: 50px;
+    --br: 5px;
+}
