@@ -2,7 +2,7 @@
     <section>
         <div class="container">        
             <h2>Hi, lets shorten that URL!</h2>
-            <form method="POST" v-on:submit.preven="shortenTheUrl">
+            <form v-on:submit.prevent="shortenTheUrl">
                 <input v-model="url" type="text" name="url" id="url" placeholder="Your URL goes here">
                 <label for="url">{{ url }}</label>
                 <span>{{ isFilled }}</span>
