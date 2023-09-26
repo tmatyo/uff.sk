@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UrlController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +19,5 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::inertia('/', 'App');
+
+Route::post('/shortenTheUrl', [UrlController::class, 'createShortUrl']);

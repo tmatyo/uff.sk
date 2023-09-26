@@ -5,7 +5,9 @@
             <form v-on:submit.prevent="shortenTheUrl">
                 <input v-model="url" type="text" name="url" id="url" placeholder="Your URL goes here">
                 <label for="url">{{ url }}</label>
-                <span>{{ isFilled }}</span>
+                <p>Input filled: {{ isFilled }}</p>
+                <p>Short URL visible: {{ showShortUrl }}</p>
+                <p v-if="showShortUrl">{{ shortUrl }}</p>
 
             </form>
         </div>
@@ -24,6 +26,9 @@ export default {
     computed: {
         isFilled() {
             return this.url.length > 0;
+        },
+        showShortUrl() {
+            return this.shortUrl.length > 0;
         }
     },
     methods: {
@@ -32,7 +37,8 @@ export default {
             Axios.post('/shortenTheUrl', { 
                 url: this.url
             }).then((res) => {
-                self.shortUrl = res.shortUrl
+                self.shortUrl = res.data.shortUrl;
+                console.log(res);
             }).catch( e => console.log(e))
         }
     }
