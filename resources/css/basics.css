@@ -16,5 +16,6 @@
     /* settings */
 
     --padd: 50px;
-    --br: 5px;
+    --bor-rad-xl: 8px;
+    --bor-rad-sm: 5px;
 }

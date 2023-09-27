@@ -1,14 +1,14 @@
 <template>
     <section>
-        <div class="container">        
+        <div class="container form">
             <h2>Hi, lets shorten that URL!</h2>
             <form v-on:submit.prevent="shortenTheUrl">
-                <input v-model="url" type="text" name="url" id="url" placeholder="Your URL goes here">
-                <label for="url">{{ url }}</label>
-                <p>Input filled: {{ isFilled }}</p>
+                <div class="row">
+                    <input v-model="url" type="text" name="url" id="url" placeholder="Your URL goes here">
+                    <input type="submit" :value="tr.submit" id="cta">
+                </div>
                 <p>Short URL visible: {{ showShortUrl }}</p>
                 <p v-if="showShortUrl">{{ shortUrl }}</p>
-
             </form>
         </div>
     </section>
@@ -20,7 +20,10 @@ export default {
     data() {
         return {
             url: '',
-            shortUrl: ''
+            shortUrl: '',
+            tr: {
+                submit: 'Submitttt'
+            }
         }
     },
     computed: {
@@ -53,15 +56,47 @@ export default {
         background: var(--beige);
         height:100vh;
         width:100vw;
-        padding: 60px;
         margin: 0;
-    }
-    #url {
-        width: 100%;
-        height: 50px;        
-        border-radius: 8px;
-        border-color: var(--navy);
-        outline: none;
-        padding: 25px 50px;
+    
+        .form {
+            height: 100%;
+            padding: 0;
+            margin: 0 10%;
+            display: flex;
+            /* align-items: center; */
+            justify-content: center;
+            flex-direction: column;
+        
+            .row {
+                display: flex;
+                flex-direction: row;
+                gap: 4px;
+                background: var(--navy);
+                padding: 4px;
+                border-radius: var(--bor-rad-xl);
+
+                #url {
+                    width: 100%;
+                    height: 50px;
+                    border-radius: var(--bor-rad-xl);
+                    outline: none;
+                    padding: 25px 50px;
+                    border: none;
+                }
+                #cta {
+                    outline: none;
+                    border-radius: var(--bor-rad-xl);
+                    background: var(--orange);
+                    background-color: var(--orange);
+                    color: var(--base);
+                    border: none;
+
+                    &:hover {
+                        cursor: pointer;
+                        filter: brightness(110%);
+                    }
+                }
+            }
+        }
     }
 </style>
