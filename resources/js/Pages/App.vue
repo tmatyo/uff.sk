@@ -102,14 +102,14 @@ export default {
                 #url {
                     width: 100%;
                     height: 50px;
-                    border-radius: var(--bor-rad-xl);
+                    border-radius: var(--bor-rad-sm);
                     outline: none;
                     padding: 25px 50px;
                     border: none;
                 }
                 #cta {
                     outline: none;
-                    border-radius: var(--bor-rad-xl);
+                    border-radius: var(--bor-rad-sm);
                     background: var(--orange);
                     background-color: var(--orange);
                     color: var(--base);
@@ -133,5 +133,19 @@ export default {
                 display: block;
             }
         }
+
+        @media screen and (min-width: 922px) {
+            .form {
+                margin: 0 20%;
+            }
+        }
+
+        @media screen and (min-width: 1200px) {
+            .form {
+                margin: 0 30%;
+            }
+        }
     }
+
+
 </style>
