@@ -4,7 +4,7 @@
             <h2>{{ tr.title }}</h2>
             <form v-on:submit.prevent="shortenTheUrl">
                 <div class="row">
-                    <input v-model="url" type="text" name="url" id="url" placeholder="Your URL goes here">
+                    <input v-model="url" type="text" name="url" id="url" :placeholder="tr.placeholder" maxlength="1000">
                     <input type="submit" :value="tr.submit" id="cta" :disabled="!isFilled">
                 </div>
                 <label for="url" v-if="showError" class="url-error">{{ tr.errors.notUrl }}</label>
@@ -25,6 +25,7 @@ export default {
             tr: {
                 title: 'Hi, lets shorten that URL!',
                 submit: 'Submitttt',
+                placeholder: 'Your URL goes here',
                 errors: {
                     notUrl: 'This is not a valid URL.'
                 }
@@ -41,7 +42,7 @@ export default {
         isUrl() {
             try {
                 let u = new URL(this.url)
-                return true && (u.protocol === 'http:' || u.protocol === 'https:')
+                return u.protocol === 'http:' || u.protocol === 'https:'
             } catch (error) {
                 return false
             }
