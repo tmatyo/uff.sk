@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('urls', function (Blueprint $table) {
             $table->id();
-            $table->string('long_url');
-            $table->string('short_url')->unique();
-            $table->boolean('active');
+            $table->string('long_url', 1000);
+            $table->string('short_url', 10)->unique();
+            $table->boolean('active')->default(1);
             $table->timestamps();
         });
     }
