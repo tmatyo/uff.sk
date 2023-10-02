@@ -25,6 +25,8 @@ class UrlController extends Controller
             'url' => 'required|url:http,https|max:1000'
         ]);
 
+        // TO DO: what if error
+
         // generate new short URL
         $newUrl = Uff::generateUrl();
 
@@ -35,7 +37,7 @@ class UrlController extends Controller
         $er = $url->save();
 
         return response()->json([
-            'shortUrl' => $newUrl,
+            'shortUrl' => self::URL_BASE . $newUrl,
             'longUrl' => $validated['url'],
             'er' => $er,
     	], 200, [], JSON_UNESCAPED_UNICODE);

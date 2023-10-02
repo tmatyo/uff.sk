@@ -1,10 +1,10 @@
 :root {
     /* vintage color scheme */
     --base: #FFFFFF;
-    --beige: #EBE4D1;
-    --grey: #B4B4B3;
-    --navy: #26577C;
-    --orange: #E55604;
+    --bg-color: #EBE4D1;
+    --border: #B4B4B3;
+    --accent: #26577C;
+    --cta: #E55604;
 
     /* yellow-blue color scheme
     --orange: #FFCC70;

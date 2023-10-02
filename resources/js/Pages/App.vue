@@ -1,6 +1,6 @@
 <template>
     <section>
-        <div class="container form">
+        <div class="form">
             <h2>{{ tr.title }}</h2>
             <form v-on:submit.prevent="shortenTheUrl">
                 <div class="row">
@@ -77,8 +77,8 @@ export default {
 <style>
     section {
         display: block;
-        color: var(--navy);
-        background: var(--beige);
+        color: var(--accent);
+        background: var(--bg-color);
         height:100vh;
         width:100vw;
         margin: 0;
@@ -96,7 +96,7 @@ export default {
                 display: flex;
                 flex-direction: row;
                 gap: 4px;
-                background: var(--navy);
+                background: var(--accent);
                 padding: 4px;
                 border-radius: var(--bor-rad-xl);
 
@@ -111,8 +111,8 @@ export default {
                 #cta {
                     outline: none;
                     border-radius: var(--bor-rad-sm);
-                    background: var(--orange);
-                    background-color: var(--orange);
+                    background: var(--cta);
+                    background-color: var(--cta);
                     color: var(--base);
                     border: none;
 
