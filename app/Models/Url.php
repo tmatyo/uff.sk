@@ -9,6 +9,18 @@ class Url extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['long_url', 'short_url', 'active'];
+
+    /**
+     * 
+     * Relationship to Users
+     * 
+     */
+
+     public function user() {
+        return $this->belongsTo(User::class);
+    }
+
     /**
      * 
      * Main functionality. 
@@ -23,4 +35,5 @@ class Url extends Model
     public static function createShortUrl($longUrl) {
         return '';
     }
+
 }

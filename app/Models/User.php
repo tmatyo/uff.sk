@@ -42,4 +42,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    // added by me starts here
+
+    /**
+     * 
+     * Relationship to Urls
+     * 
+     */
+
+    public function url() {
+        return $this->hasMany(Url::class);
+    }
 }

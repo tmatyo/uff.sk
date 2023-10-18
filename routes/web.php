@@ -27,6 +27,7 @@ Route::get('/', function () {
 });
 
 Route::post('/shortenTheUrl', [UrlController::class, 'createShortUrl']);
+Route::get('/getMyUrls', [UrlController::class, 'getMyUrls']);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('long_url', 1000);
             $table->string('short_url', 10)->unique();
             $table->boolean('active')->default(1);
+            $table->foreignId('user_id')->nullable();
             $table->timestamps();
         });
     }
