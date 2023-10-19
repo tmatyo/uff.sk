@@ -4,7 +4,7 @@
             <h2>{{ tr.title }}</h2>
             <form v-on:submit.prevent="shortenTheUrl">
                 <div class="row">
-                    <input v-model="url" type="text" name="url" id="url" :placeholder="tr.placeholder" maxlength="1000">
+                    <input v-model="url" type="text" name="url" id="url" :placeholder="tr.placeholder" maxlength="1000" autofocus>
                     <input type="submit" :value="tr.submit" id="cta" :disabled="!isFilled">
                 </div>
                 <label for="url" v-if="showError" class="url-error">{{ tr.errors.notUrl }}</label>
