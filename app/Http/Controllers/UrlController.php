@@ -49,6 +49,26 @@ class UrlController extends Controller
 
     /**
      * 
+     * The Redirect
+     * 
+     */
+    public function theRedirect(Request $req) {
+        $url = Url::where([
+            ['short_url', request('shortUrl')],
+            ['active', 1]
+            ])->first(['long_url']);
+        
+        if(isset($url['long_url'])) {
+            header('Location: ' . $url['long_url'], true, 301);
+        } else {
+            header('Location: /');
+        }
+
+        exit();
+    }
+
+    /**
+     * 
      * Retrieve URLs saved by the user. For the dashboard.
      * 
      * 

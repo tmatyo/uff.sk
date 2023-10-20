@@ -40,3 +40,7 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+// the controller for the redirect of short urls
+Route::get('/{shortUrl}', [UrlController::class, 'theRedirect']);
+
