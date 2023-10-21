@@ -24,7 +24,7 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('homepage');
 
 Route::post('/shortenTheUrl', [UrlController::class, 'createShortUrl']);
 Route::get('/getMyUrls', [UrlController::class, 'getMyUrls']);
