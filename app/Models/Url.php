@@ -11,14 +11,12 @@ class Url extends Model
 
     protected $fillable = ['long_url', 'short_url', 'active'];
 
-    /**
-     * 
-     * Relationship to Users
-     * 
-     */
-
-     public function user() {
+    public function user() {
         return $this->belongsTo(User::class);
+    }
+
+    public function stat() {
+        return $this->hasMany(Stat::class);
     }
 
     /**
