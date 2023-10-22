@@ -77,9 +77,8 @@ export default {
     section {
         display: block;
         color: var(--accent);
-        background: var(--bg-color);
-        height:100vh;
-        width:100vw;
+        /* background: var(--bg-color); */
+        height:calc(100vh - 65px);
         margin: 0;
     
         .form {
@@ -124,6 +123,10 @@ export default {
                         /* background: var(--grey);
                         background-color: var(--grey); */
                         display: none;
+                    }
+
+                    &:focus {
+                        outline: none;
                     }
                 }
             }
