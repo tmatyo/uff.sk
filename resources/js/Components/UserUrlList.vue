@@ -53,7 +53,7 @@ const dateBuilder = (isoDate) => {
                             </td>
                             <td class="border border-slate-200 p-4 text-slate-500 dark:text-slate-400 text-center">{{ dateBuilder(u.created_at) }}</td>
                             <td class="border border-slate-200 p-4 text-slate-500 dark:text-slate-400 text-center">{{ dateBuilder(u.updated_at) }}</td>
-                            <td class="border border-slate-200 p-4 text-slate-500 dark:text-slate-400 text-center">{{ u.stat.length }}</td>
+                            <td class="border border-slate-200 p-4 text-slate-500 dark:text-slate-400 text-center">{{ u.stat_count }}</td>
                             <td class="border border-slate-200 p-4 text-slate-500 dark:text-slate-400 text-center">
                                 <a :href="urlBuilder(u.short_url)" class="text-center align-middle">
                                     <svg class="h-6 w-6 text-yellow-500 items-center align-middle" viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" /></svg>

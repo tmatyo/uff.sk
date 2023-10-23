@@ -132,14 +132,7 @@ class UrlController extends Controller
      */
     public function getMyUrls(Request $req) {
 
-        //$res = User::find($req->user()->id)->url;
-        //$res = User::find($req->user()->id)->stat;
-        $res = Url::where('user_id', $req->user()->id)->orderBy('id')->take(10)->get();
-        
-        $res->map(function($url) {
-            return count($url->stat);
-        });
-
+        $res = User::find($req->user()->id)->url()->withCount('stat')->get();
         return response()->json($res, 200, [], JSON_UNESCAPED_UNICODE);
     }
 }
