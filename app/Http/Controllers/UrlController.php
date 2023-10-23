@@ -135,4 +135,12 @@ class UrlController extends Controller
         $res = User::find($req->user()->id)->url()->withCount('stat')->get();
         return response()->json($res, 200, [], JSON_UNESCAPED_UNICODE);
     }
+
+    public function getMyStats(Request $req) {
+
+        $res = User::find($req->user()->id)->stat()->with(['url' => function($query) {
+            $query->select('id', 'short_url');
+        }])->get();
+        return response()->json($res, 200, [], JSON_UNESCAPED_UNICODE);
+    }
 }

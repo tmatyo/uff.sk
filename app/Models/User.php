@@ -47,11 +47,16 @@ class User extends Authenticatable
 
     /**
      * 
-     * Relationship to Urls
+     * Relationships
      * 
      */
 
     public function url() {
         return $this->hasMany(Url::class);
+    }
+
+    public function stat() {
+        //return $this->hasManyThrough(Stats::class, Url::class);
+        return $this->through('url')->has('stat');
     }
 }

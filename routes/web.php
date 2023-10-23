@@ -28,10 +28,15 @@ Route::get('/', function () {
 
 Route::post('/shortenTheUrl', [UrlController::class, 'createShortUrl']);
 Route::get('/getMyUrls', [UrlController::class, 'getMyUrls']);
+Route::get('/getMyStats', [UrlController::class, 'getMyStats']);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/statistics', function() {
+    return Inertia::render('Statistics');
+})->middleware(['auth', 'verified'])->name('statistics');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
