@@ -40,13 +40,13 @@ class UrlController extends Controller
             $url->user_id = $req->user()->id;        
         }
 
-        $er = $url->save();
+        $ok = $url->save();
 
         return response()->json([
             'shortUrl' => self::BASE_URL . $url->short_url,
             'longUrl' => $url->long_url,
             'userId' => $url->user_id,
-            'er' => $er,
+            'ok' => $ok,
     	], 200, [], JSON_UNESCAPED_UNICODE);
     }
 
@@ -123,9 +123,7 @@ class UrlController extends Controller
     }
 
     /**
-     * 
      * Retrieve URLs saved by the user. For the dashboard.
-     *  
      */
     public function getMyUrls(Request $req) {
         
@@ -139,5 +137,49 @@ class UrlController extends Controller
         return response()->json($res, 200, [], JSON_UNESCAPED_UNICODE);
     }
 
+    /**
+     * Toggle active state of URL
+     */
+    public function toggleActive(Request $req) {
 
+        $ok = false;
+        
+        if(!Auth::check()) {
+            return Redirect::route('login');
+        }
+
+        $payload = json_decode($req->getContent(), true);
+
+        $url = Url::find($payload['url_id']);
+
+        if($url->user_id == Auth::id()) {
+            $url->active = !$url->active;
+            $ok = $url->update();
+        }
+
+        return response()->json(['ok' => $ok, 'co' => $payload], 200, [], JSON_UNESCAPED_UNICODE);
+
+    }
+
+    /**
+     * Remove URL
+     */
+    public function removeUrl(Request $req) {
+
+        $ok = false;
+        
+        if(!Auth::check()) {
+            return Redirect::route('login');
+        }
+
+        $payload = json_decode($req->getContent(), true);
+
+        $url = Url::find($payload['url_id']);
+
+        if($url->user_id == Auth::id()) {
+            $ok = $url->delete();
+        }
+
+        return response()->json(['ok' => $ok, 'co' => $payload], 200, [], JSON_UNESCAPED_UNICODE);
+    }
 }

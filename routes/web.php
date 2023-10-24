@@ -30,6 +30,8 @@ Route::get('/', function () {
 // url
 Route::post('/shortenTheUrl', [UrlController::class, 'createShortUrl']);
 Route::get('/getMyUrls', [UrlController::class, 'getMyUrls']);
+Route::post('/toggleActiveUrl', [UrlController::class, 'toggleActive']);
+Route::post('/deleteUrl', [UrlController::class, 'removeUrl']);
 
 // stats
 Route::get('/getMyStats', [StatController::class, 'getMyStats']);
