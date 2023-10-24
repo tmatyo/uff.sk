@@ -6,9 +6,7 @@ use Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use App\Http\Controllers\Uff;
 use App\Models\Url;
-use App\Models\User;
 use App\Models\Stat;
 use Jenssegers\Agent\Agent;
 
@@ -19,12 +17,7 @@ class UrlController extends Controller
     CONST MAX_STRING_LENGTH = 255;
 
     /**
-     * 
      * Generates a URL-safe string of 8 characters length, if not specified otherwise
-     * 
-     * @var $length 
-     * @return String
-     *
      */
     public function createShortUrl(Request $req) {
 
@@ -36,27 +29,29 @@ class UrlController extends Controller
         // TO DO: what if error
 
         // generate new short URL
-        $newUrl = Uff::generateUrl();
+        $newUrl = Url::generateUrl();
 
         $url = new Url;
 
         $url->long_url = $validated['url'];
         $url->short_url = $newUrl;
-        $url->user_id = $req->user()->id;
+
+        if(Auth::check()) {
+            $url->user_id = $req->user()->id;        
+        }
+
         $er = $url->save();
 
         return response()->json([
-            'shortUrl' => self::BASE_URL . $newUrl,
-            'longUrl' => $validated['url'],
-            'userId' => $req->user()->id,
+            'shortUrl' => self::BASE_URL . $url->short_url,
+            'longUrl' => $url->long_url,
+            'userId' => $url->user_id,
             'er' => $er,
     	], 200, [], JSON_UNESCAPED_UNICODE);
     }
 
     /**
-     * 
      * The Redirect
-     * 
      */
     public function theRedirect(Request $req) {
 
@@ -144,24 +139,5 @@ class UrlController extends Controller
         return response()->json($res, 200, [], JSON_UNESCAPED_UNICODE);
     }
 
-    /**
-     * 
-     * Retrieve statistics about url traffic. 
-     *  
-     */
-    public function getMyStats(Request $req) {
-        
-        if(!Auth::check()) {
-            return Redirect::route('login');
-        }
-
-        $user = $req->user();
-
-        $res = $user->stat()->with(['url' => function($query) {
-            $query->select('id', 'short_url');
-        }])->get();
-
-        return response()->json($res, 200, [], JSON_UNESCAPED_UNICODE);
-    }
 
 }

@@ -20,18 +20,23 @@ class Url extends Model
     }
 
     /**
-     * 
-     * Main functionality. 
-     * Create and return a short url for the user, 
-     * after he gives you the long one
-     * 
-     * @var $longUrl      
-     * @return Url
-     * 
+     * Generates a URL-safe string of 8 characters length, if not specified otherwise
      */
+     public static function generateUrl($length = 8) {
 
-    public static function createShortUrl($longUrl) {
-        return '';
+        // generate string for new url
+        $string = substr(str_shuffle(str_repeat("0123456789abcdefghijklmnopqrstuvwxyz", 5)), 0, $length);
+
+        // check if newly generated short URL does already exist in DB
+        $yn = Url::where('short_url', $string)->first();
+
+        if(!empty($yn)) {
+            // if exists, start all over
+            Url::generateUrl($length);
+        } else {
+            // if doesn't return the string
+            return $string;
+        }
     }
 
 }

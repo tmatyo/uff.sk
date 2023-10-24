@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StatController;
 use App\Http\Controllers\UrlController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -26,10 +27,14 @@ Route::get('/', function () {
     ]);
 })->name('homepage');
 
+// url
 Route::post('/shortenTheUrl', [UrlController::class, 'createShortUrl']);
 Route::get('/getMyUrls', [UrlController::class, 'getMyUrls']);
-Route::get('/getMyStats', [UrlController::class, 'getMyStats']);
 
+// stats
+Route::get('/getMyStats', [StatController::class, 'getMyStats']);
+
+// pages
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
