@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Uff;
 use App\Models\Url;
 use App\Models\User;
@@ -12,9 +15,9 @@ use Jenssegers\Agent\Agent;
 class UrlController extends Controller
 {
         
-    CONST URL_BASE = "https://uff.sk/";
+    CONST BASE_URL = "https://uff.sk/";
     CONST MAX_STRING_LENGTH = 255;
-    
+
     /**
      * 
      * Generates a URL-safe string of 8 characters length, if not specified otherwise
@@ -43,7 +46,7 @@ class UrlController extends Controller
         $er = $url->save();
 
         return response()->json([
-            'shortUrl' => self::URL_BASE . $newUrl,
+            'shortUrl' => self::BASE_URL . $newUrl,
             'longUrl' => $validated['url'],
             'userId' => $req->user()->id,
             'er' => $er,
@@ -118,7 +121,7 @@ class UrlController extends Controller
             // finally redirect to it
             header('Location: ' . $url['long_url'], true, 301); 
         } else {
-            header('Location: /'); // if no, go to home page
+            return Redirect::to("/");
         }
 
         exit();
@@ -127,20 +130,38 @@ class UrlController extends Controller
     /**
      * 
      * Retrieve URLs saved by the user. For the dashboard.
-     * 
-     * 
+     *  
      */
     public function getMyUrls(Request $req) {
+        
+        if(!Auth::check()) {
+            return Redirect::route('login');
+        }
 
-        $res = User::find($req->user()->id)->url()->withCount('stat')->get();
+        $user = $req->user();
+        $res = $user->url()->withCount('stat')->get();
+
         return response()->json($res, 200, [], JSON_UNESCAPED_UNICODE);
     }
 
+    /**
+     * 
+     * Retrieve statistics about url traffic. 
+     *  
+     */
     public function getMyStats(Request $req) {
+        
+        if(!Auth::check()) {
+            return Redirect::route('login');
+        }
 
-        $res = User::find($req->user()->id)->stat()->with(['url' => function($query) {
+        $user = $req->user();
+
+        $res = $user->stat()->with(['url' => function($query) {
             $query->select('id', 'short_url');
         }])->get();
+
         return response()->json($res, 200, [], JSON_UNESCAPED_UNICODE);
     }
+
 }
