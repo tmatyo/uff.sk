@@ -8,12 +8,14 @@ const deleteResponse = ref(false)
 const urlId = ref(0)
 const toggleModalWindow = ref(false)
 
+// fetching data
 onMounted(() => loadData())
 
 const loadData = async () => {
     urls.value = await fetch('/getMyUrls').then(res => res.json())
 }
 
+// formatting data from db
 const urlBuilder = (url) => {
     return window.location.origin + "/" + url
 }
@@ -22,6 +24,7 @@ const dateBuilder = (isoDate) => {
     return new Date(isoDate).toLocaleString(window.navigator.language || window.navigator.userLanguage)
 }
 
+// interaction (crud)
 const toggleActiveUrl = async (url_id) => {
     toggleResponse.value = await fetch('/toggleActiveUrl', { 
         headers: {
@@ -43,13 +46,10 @@ const deleteShortUrl = async (url_id = urlId.value) => {
         body: JSON.stringify({url_id})
     }).then(res => res.json())
 
-    if(toggleModalWindow.value) {
-        closeModal()
-    }
-
-    deleteResponse.value.ok ? loadData() : console.log("summfink vent vonk")
+    deleteResponse.value.ok ? (() => {closeModal(); loadData();})() : console.log("summfink vent vonk")
 }
 
+// modal helpers for double confirming deletion
 const openModal = (id) => {
     if(id > 0) {
         urlId.value = id
