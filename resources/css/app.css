@@ -20,11 +20,11 @@ html, body {
     width:100%;
     padding:0;
 }
-
+/* 
 nav {
     background-color: var(--accent);
     color: var(--bg-color);
-}
+} */
 
 svg {
     margin-right: 5px;

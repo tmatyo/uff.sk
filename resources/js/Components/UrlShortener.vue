@@ -85,13 +85,13 @@ export default {
 </script>
 
 <template>
-    <section>
-        <div class="form">
+    <section class="block text-sky-800 m-0 h-[calc(100vh-65px)]">
+        <div id="form" class="flex flex-col justify-center h-full p-0 my-0 mx-[10%] lg:mx-[20%] xl:mx-[30%]">
             <h2>{{ tr.title }}</h2>
             <form v-on:submit.prevent="shortenTheUrl">
-                <div class="row url-input items-stretch">
-                    <Link class="icon-link" />
-                    <input v-model="url" type="url" name="url" id="url" :placeholder="tr.placeholder" :disabled="!formToggle" maxlength="1000" autofocus>
+                <div class="flex flex-row items-stretch relative gap-1 bg-sky-800 p-1 rounded-[8px]">
+                    <Link class="absolute my-[9px] mx-[10px]" />
+                    <input v-model="url" type="url" name="url" id="url" class="w-full h-[50px] rounded-[5px] outline-none border-none py-[25px] pr-[15px] pl-[50px]" :placeholder="tr.placeholder" :disabled="!formToggle" maxlength="1000" autofocus>
                     <button type="submit" class="cta" :disabled="!isFilled" v-if="formToggle"><Create />  {{ tr.submit }} </button>
                     <button type="button" class="cta" v-if="!formToggle" @click="this.copyToClipboard">
                         <span v-if="!isCopied"><Copy />{{ tr.copy }}</span>
@@ -99,117 +99,42 @@ export default {
                     </button>
                     <button type="button" class="cta" v-if="!formToggle" @click="this.createNextUrl"><Forward class="icon icon-forward" />{{ tr.new}}</button>
                 </div>
-                <label for="url" v-if="showError" class="url-error">{{ tr.errors.notUrl }}</label>
+                <label for="url" v-if="showError" class="block m-4">{{ tr.errors.notUrl }}</label>
             </form>
         </div>
     </section>
 </template>
 
 <style>
-    section {
-        display: block;
-        color: var(--accent);
-        /* background: var(--bg-color); */
-        height:calc(100vh - 65px);
-        margin: 0;
-    
-        .form {
-            height: 100%;
-            padding: 0;
-            margin: 0 10%;
-            display: flex;
-            /* align-items: center; */
-            justify-content: center;
-            flex-direction: column;
-        
-            .url-input {
-                display: flex;
-                flex-direction: row;
-                gap: 4px;
-                background: var(--accent);
-                padding: 4px;
-                border-radius: var(--bor-rad-xl);
-                position: relative;
 
-                .icon-link {
-                    position: absolute;
-                    margin: 9px 10px;
-                }
-
-                #url {
-                    width: 100%;
-                    height: 50px;
-                    border-radius: var(--bor-rad-sm);
-                    outline: none;
-                    padding: 25px 15px 25px 50px;
-                    border: none;
-                }
-
-                #short-url {
-                    width: 100%;
-                    height: 50px;
-                    border-radius: var(--bor-rad-sm);
-                    outline: none;
-                    border: none;
-                    background-color: var(--bg-color);
-                    display: flex;
-                    align-items: center;
-                    padding-left: 50px;
-                }
-
-                .cta {
-                    outline: none;
-                    border-radius: var(--bor-rad-sm);
-                    background: var(--cta);
-                    background-color: var(--cta);
-                    color: var(--base);
-                    border: none;
-                    padding: 0 20px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-
-                    &:hover:enabled{
-                        cursor: pointer;
-                        filter: brightness(110%);
-                    }
-
-                    &[disabled] {
-                        /* background: var(--grey);
-                        background-color: var(--grey); */
-                        display: none;
-                    }
-
-                    &:focus {
-                        outline: none;
-                    }
-
-                    span {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                    }
-                }
-            }
-
-            .url-error {
-                margin: 15px;
-                display: block;
-            }
-        }
-
-        @media screen and (min-width: 922px) {
-            .form {
-                margin: 0 20%;
-            }
-        }
-
-        @media screen and (min-width: 1200px) {
-            .form {
-                margin: 0 30%;
-            }
-        }
+.cta {
+    outline: none;
+    border-radius: var(--bor-rad-sm);
+    background: var(--cta);
+    background-color: var(--cta);
+    color: var(--base);
+    border: none;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover:enabled{
+        cursor: pointer;
+        filter: brightness(110%);
     }
-
+    &[disabled] {
+        /* background: var(--grey);
+        background-color: var(--grey); */
+        display: none;
+    }
+    &:focus {
+        outline: none;
+    }
+    span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
 
 </style>
