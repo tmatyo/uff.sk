@@ -102,7 +102,7 @@ const showingNavigationDropdown = ref(false);
         </header>
 
         <!-- Page Content -->
-        <main>
+        <main class="relative z-10"> <!-- these classes on main - the footers sibling - fixes issues with sticky footer combined with modals (z-index) -->
             <slot />
         </main>
 
