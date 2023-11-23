@@ -29,3 +29,44 @@ nav {
 svg {
     margin-right: 5px;
 }
+
+
+.row-count-number {
+    background: -webkit-linear-gradient(#0959857a, transparent);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.url-list .grid div {
+    display: flex;
+    align-items: center;
+}
+
+.v-enter-active, 
+.v-leave-active { 
+    transition: all .3s ease; 
+}
+
+.v-enter-from, 
+.v-leave-to { 
+    opacity: 0; 
+    transform: scale(1.1); 
+}
+
+.fadeInAnimation {
+    animation: fadeInAnimation ease .6s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        margin-top: -20px;
+        opacity: 0;
+    }
+    100% {
+        margin-top: 0;
+        opacity: 1;
+     }
+}
