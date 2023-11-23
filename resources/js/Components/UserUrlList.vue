@@ -84,7 +84,7 @@ const closeModal = () => {
         </div>
 
         <!-- Card -->
-        <div class="py-4" v-if="urls.length > 0" v-for="(u, i) in urls" :key="u.id">
+        <div class="py-4 fadeInAnimation" v-if="urls.length > 0" v-for="(u, i) in urls" :key="u.id" >
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <!-- Card content -->
                 <div class="grid grid-cols-[100px_repeat(3,_1fr)_80px] grid-rows-3 h-36">
@@ -179,5 +179,22 @@ const closeModal = () => {
 .v-leave-to { 
     opacity: 0; 
     transform: scale(1.1); 
+}
+
+.fadeInAnimation {
+    animation: fadeInAnimation ease .6s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        margin-top: -20px;
+        opacity: 0;
+    }
+    100% {
+        margin-top: 0;
+        opacity: 1;
+     }
 }
 </style>
