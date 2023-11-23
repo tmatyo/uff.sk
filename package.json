@@ -22,6 +22,8 @@
         "@inertiajs/vue3": "^1.0.11",
         "@quasar/extras": "^1.16.6",
         "@vitejs/plugin-vue": "^4.3.4",
+        "@vueuse/components": "^10.6.1",
+        "@vueuse/core": "^10.6.1",
         "quasar": "^2.12.7"
     }
 }
